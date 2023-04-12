@@ -1,5 +1,6 @@
 package com.precioso.inclass_5;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,19 +9,38 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
-public class ProductAdapter extends RecyclerView.Adapter {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+
+
+    private ArrayList<ProductModel> productsList;
+
+    public ProductAdapter(ArrayList<ProductModel> products) {
+        this.productsList = products;
+    }
+
+
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.productcard, parent, false);
+
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ProductModel products = productsList.get(position);
+        holder.name.setText(products.getName());
+        holder.price.setText(products.getPrice());
+        holder.id.setText(products.getId());
+        Picasso.get().load(products.getImage()).into(holder.image);
     }
+
+
 
     @Override
     public int getItemCount() {

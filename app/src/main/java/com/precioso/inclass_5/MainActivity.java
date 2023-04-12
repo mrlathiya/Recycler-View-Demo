@@ -8,11 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
 
 
     @Override
@@ -20,20 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<ProductModel> productModelsList = createList();
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        List<ProductModel> productModelList = createList();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new ProductAdapter(productModelsList);
-        recyclerView.setAdapter(adapter);
-        Log.e("Lai le","Su lav!!!!!!!!!!!!!!!");
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new ProductAdapter(getApplicationContext(),productModelList));
 
     }
 
-    ArrayList<ProductModel> createList() {
-        ArrayList<ProductModel> list = new ArrayList<>();
+    List<ProductModel> createList() {
+        List<ProductModel> list = new ArrayList<>();
         list.add(new ProductModel("001", "Lays 100gm", "$10", "https://i5.walmartimages.com/asr/3b945e17-b0f0-4e88-9ff3-e21505667c0c.96d85eeb24d9e2e7245bb0b10380e872.jpeg"));
         list.add(new ProductModel("002", "Banana", "$07", "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcTYSv-kmEqeAj6NRr09yPqvo3HGVdDsuw9ZGKRfpl9EtI6zttIJyRv7WSCMK_4eAsrm"));
         list.add(new ProductModel("003", "Brita Filter", "$77", "https://i5.walmartimages.ca/images/Enlarge/425/567/999999-60258425567.jpg"));

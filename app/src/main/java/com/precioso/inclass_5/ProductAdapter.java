@@ -37,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.name.setText(products.getName());
         holder.price.setText(products.getPrice());
         holder.id.setText(products.getId());
-        Picasso.get().load(products.getImage()).into(holder.image);
+//        Picasso.get().load(products.getImage()).into(holder.image);
     }
 
 
@@ -59,14 +59,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public final TextView name;
         public final TextView id;
         public final TextView price;
-        public final ImageView image;
+//        public final ImageView image;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
             name = view.findViewById(R.id.name);
             price = view.findViewById(R.id.price);
-            image = view.findViewById(R.id.image);
+//            image = view.findViewById(R.id.image);
             id = view.findViewById(R.id.id);
         }
     }
